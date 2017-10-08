@@ -19,7 +19,7 @@ public class Master extends JDialog {
     private JTextField sha256Status;
     private JTextField sha1Satus;
 
-    public Master() throws Exception{
+    public Master() {
         contentPane.setPreferredSize(new Dimension(800, 600));
         setContentPane(contentPane);
         setModal(true);
