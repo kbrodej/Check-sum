@@ -100,7 +100,7 @@ public class Master extends JDialog {
 
 
     /**
-     * Created by kleme on 08-Oct-17.
+     * Created by klemen on 08-Oct-17.
      */
     public static class Compute {
         private String value = "";
