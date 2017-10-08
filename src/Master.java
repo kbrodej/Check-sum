@@ -18,6 +18,7 @@ public class Master extends JDialog {
     private JTextField md5Status;
     private JTextField sha256Status;
     private JTextField sha1Satus;
+    private JButton resetButton;
 
     public Master() {
         contentPane.setPreferredSize(new Dimension(800, 600));
@@ -36,64 +37,80 @@ public class Master extends JDialog {
         computeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(md5Pasted.getText().trim().isEmpty()){
-                    md5Computed.setText("No md5 to compare");
-                    md5Status.setText("MD5 Error");
-                }else{
-                    try {
-                        Compute x = new Compute();
-                        x.setAlgorithm("MD5");
-                        x.Calculate(pathField.getText());
-                        md5Computed.setText(x.getValue());
-                        if(md5Pasted.getText().trim().equals(md5Computed.getText().trim())){
-                            md5Status.setText(x.getAlgorithm() + " OK");
+                if (!pathField.getText().isEmpty()) {
+                    if (md5Pasted.getText().trim().isEmpty()) {
+                        md5Computed.setText("No md5 to compare");
+                        md5Status.setText("MD5 Error");
+                    } else {
+                        try {
+                            Compute x = new Compute();
+                            x.setAlgorithm("MD5");
+                            x.Calculate(pathField.getText());
+                            md5Computed.setText(x.getValue());
+                            if (md5Pasted.getText().trim().equals(md5Computed.getText().trim())) {
+                                md5Status.setText(x.getAlgorithm() + " OK");
+                            } else {
+                                md5Status.setText(x.getAlgorithm() + " Error");
+                            }
+                        } catch (Exception x) {
+                            System.out.println(x.getStackTrace());
                         }
-                        else{
-                            md5Status.setText(x.getAlgorithm() + " Error");
-                        }
-                    } catch (Exception x){
-                        System.out.println(x.getStackTrace());
                     }
-                }
-                if(sha1Pasted.getText().trim().isEmpty()){
-                    sha1Computed.setText("No SHA1 to compare");
-                    sha1Satus.setText("SHA1 Error");
-                } else {
-                    try {
-                        Compute y = new Compute();
-                        y.setAlgorithm("SHA-1");
-                        y.Calculate(pathField.getText());
-                        sha1Computed.setText(y.getValue());
-                        if(sha1Pasted.getText().trim().equals(sha1Computed.getText().trim())){
-                            sha1Satus.setText(y.getAlgorithm() + " OK");
+                    if (sha1Pasted.getText().trim().isEmpty()) {
+                        sha1Computed.setText("No SHA1 to compare");
+                        sha1Satus.setText("SHA1 Error");
+                    } else {
+                        try {
+                            Compute y = new Compute();
+                            y.setAlgorithm("SHA-1");
+                            y.Calculate(pathField.getText());
+                            sha1Computed.setText(y.getValue());
+                            if (sha1Pasted.getText().trim().equals(sha1Computed.getText().trim())) {
+                                sha1Satus.setText(y.getAlgorithm() + " OK");
+                            } else {
+                                sha1Satus.setText(y.getAlgorithm() + " Error");
+                            }
+                        } catch (Exception y) {
+                            System.out.println(y.getStackTrace());
                         }
-                        else{
-                            sha1Satus.setText(y.getAlgorithm() + " Error");
-                        }
-                    } catch (Exception y){
-                        System.out.println(y.getStackTrace());
                     }
-                }
-                if(sha256Pasted.getText().trim().isEmpty()){
-                    sha256Computed.setText("No SHA256 to compare");
-                    sha256Status.setText("SHA256 Error");
-                } else {
-                    try {
-                        Compute z = new Compute();
-                        z.setAlgorithm("SHA-256");
-                        z.Calculate(pathField.getText());
-                        sha256Computed.setText(z.getValue());
-                        if(sha256Pasted.getText().trim().equals(sha256Computed.getText().trim())){
-                            sha256Status.setText(z.getAlgorithm() + " OK");
+                    if (sha256Pasted.getText().trim().isEmpty()) {
+                        sha256Computed.setText("No SHA256 to compare");
+                        sha256Status.setText("SHA256 Error");
+                    } else {
+                        try {
+                            Compute z = new Compute();
+                            z.setAlgorithm("SHA-256");
+                            z.Calculate(pathField.getText());
+                            sha256Computed.setText(z.getValue());
+                            if (sha256Pasted.getText().trim().equals(sha256Computed.getText().trim())) {
+                                sha256Status.setText(z.getAlgorithm() + " OK");
+                            } else {
+                                sha256Status.setText(z.getAlgorithm() + " Error");
+                            }
+                        } catch (Exception z) {
+                            System.out.println(z.getStackTrace());
                         }
-                        else{
-                            sha256Status.setText(z.getAlgorithm() + " Error");
-                        }
-                    } catch (Exception z){
-                        System.out.println(z.getStackTrace());
                     }
-                }
 
+                } else {
+                    pathField.setText("No FIle");
+                }
+            }
+        });
+        resetButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                md5Pasted.setText("");
+                md5Computed.setText("");
+                md5Status.setText("");
+                sha1Pasted.setText("");
+                sha1Computed.setText("");
+                sha1Satus.setText("");
+                sha256Pasted.setText("");
+                sha256Computed.setText("");
+                sha256Status.setText("");
+                pathField.setText("");
             }
         });
     }
