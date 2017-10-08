@@ -94,7 +94,7 @@ public class Master extends JDialog {
                     }
 
                 } else {
-                    pathField.setText("No FIle");
+                    pathField.setText("No File");
                 }
             }
         });
